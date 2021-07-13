@@ -18,10 +18,43 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="navbar-collapse collapse show" id="navbarNavDropdown">
-
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <li>
+                  <%= link_to "Home",user_path(current_user.id) %>
+                </li>
+                <li>
+                  <a>Users</a>
+                </li>
+                 <li>
+                  <%= link_to "Books", books_path %>
+                </li>
+                <li>
+                  <%= link_to "logout", destroy_user_session_path,method: :delete %>
+                </li>
+              <% else %>
+                <li>
+                  <%= link_to "Home", root_path %>
+                </li>
+                <li>
+                  <%= link_to "About", home_about_path %>
+                </li>
+                 <li>
+                  <%= link_to "sign up", new_user_registration_path %>
+                </li>
+                <li>
+                <li>
+                  <%= link_to "login", new_user_session_path %>
+                </li>
+              <% end %>
+            </ul>
           </div>
-    <%= yield %>
-
+        </div>
+      </nav>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
     <footer>
       <div class="container mt-5">
         <div class="row">
